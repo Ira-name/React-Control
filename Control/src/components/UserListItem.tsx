@@ -35,8 +35,7 @@ const UserListItem = ({ user, onDelete }: UserListItemProps) => {
         style={{
           background: "red",
           color: "white",
-          border: "none",
-          padding: "10px 15px",
+          padding: "5px 45px",
           borderRadius: "5px",
         }}
       >

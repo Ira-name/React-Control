@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export interface User {
   id: number;
@@ -11,24 +11,20 @@ const useGetAllUsers = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<Array<User>>([]);
 
-  useEffect(() => {
-    const fetchData = () => {
-      setIsLoading(true);
-      fetch("https://reqres.in/api/users")
-        .then((response) => response.json())
-        .then((result) => {
-          setData(result.data);
-          setIsLoading(false);
-        })
-        .catch(() => {
-          setIsLoading(false);
-        });
-    };
+  const fetchData = () => {
+    setIsLoading(true);
+    fetch("https://reqres.in/api/users")
+      .then((response) => response.json())
+      .then((result) => {
+        setData(result.data);
+        setIsLoading(false);
+      })
+      .catch(() => {
+        setIsLoading(false);
+      });
+  };
 
-    fetchData();
-  }, []);
-
-  return { isLoading, data, setData };
+  return { isLoading, data, setData, fetchData };
 };
 
 export default useGetAllUsers;

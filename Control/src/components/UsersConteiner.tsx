@@ -4,7 +4,7 @@ import FilterUsers from "./FilterUsers";
 import UserList from "./UserList";
 
 const UsersConteiner = () => {
-  const { isLoading, data, setData } = useGetAllUsers();
+  const { isLoading, data, setData, fetchData  } = useGetAllUsers();
   const [filterText, setFilterText] = useState("");
 
   const handleDeleteUser = (id: number) => {
@@ -17,13 +17,26 @@ const UsersConteiner = () => {
 
   return (
     <div>
-      <FilterUsers filterText={filterText} onFilterText={setFilterText} />
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <UserList items={filteredUser} onDelete={handleDeleteUser} />
-      )}
-    </div>
+    <button
+      onClick={fetchData}
+      style={{
+        padding: "5px 55px",
+        marginBottom: "20px",
+        fontSize: "16px",
+        background: "green",
+        color: "white",
+        borderRadius: "5px",
+      }}
+    >
+      Load Users
+    </button>
+    <FilterUsers filterText={filterText} onFilterText={setFilterText} />
+    {isLoading ? (
+      <p>Loading...</p>
+    ) : (
+      <UserList items={filteredUser} onDelete={handleDeleteUser} />
+    )}
+  </div>
   );
 };
 export default UsersConteiner;
